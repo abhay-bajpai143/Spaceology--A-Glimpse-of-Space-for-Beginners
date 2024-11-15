@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spaceology</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body background and font styling */
+        body {
+            background-color: #ffffff;
+            font-family: "Comic Sans MS", sans-serif;
+            color: #333333;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar styling with translucent banner image */
+/* Navbar styling with translucent banner image */
+.navbar {
+    background-image: url('banner.jpg'); /* Set the banner image as background */
+    background-size: cover;  /* Make the background cover the entire navbar */
+    background-position: center;  /* Center the image */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;  /* Adjust the opacity to make the banner translucent */
+}
+
+/* Logo styling */
+.navbar .logo {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+
+/* Navbar links styling */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style-type: none;
+    margin: 0 auto;
+}
+
+.nav-links a {
+    color: #ffffff;  /* Change the text color to black */
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #f5a623;  /* Color on hover remains unchanged */
+}
+
+
+        /* Hero Section styling */
+        .hero-section {
+            text-align: center;
+            padding: 100px 20px;
+            color: #ffffff;
+            background-image: url('background4.jpg'); /* Add your background image */
+            background-size: cover; /* Cover the entire section */
+            background-position: center; /* Center the image */
+            transition: background-image 0.5s ease-in-out;
+            font-size: larger;
+        }
+
+        /* Explore Section styling */
+        .explore-section {
+    padding: 30px 20px;
+    text-align: center;
+    font-family: "TW Cen MT", sans-serif;
+    font-size:x-large;
+}
+
+        .explore-section h2 {
+            font-size: 36px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Planets Section styling */
+        .planets-section {
+            padding: 40px 20px;
+            background-color: #f0f0f5;
+            text-align: center;
+        }
+
+        .planets-section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .planet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .planet {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .planet:hover {
+            transform: scale(1.05);
+        }
+
+        .planet img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .planet h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .planet p {
+            font-size: 14px;
+            color: #666;
+        }
+        /* Solar System Section styling */
+.solar-system-section {
+    padding: 1px 1px;
+    background-color: #e6f7ff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;  /* Centers the content horizontally */
+    align-items: center;      /* Centers the content vertically */
+    height: 10vh;           /* Ensure the section takes full height */
+    flex-direction: column;   /* Stack the content vertically */
+}
+
+
+
+        /* Contact Section styling */
+.contact-section {
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.contact-section p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.contact-section form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.form-group textarea {
+    height: 100px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #1e3a5f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #f5a623;
+}
+
+ /* Popup container styling */
+    .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Popup content styling */
+        .popup-content {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: popup-animation 0.4s ease-in-out;
+        }
+
+        /* Popup animation */
+        @keyframes popup-animation {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Close button styling */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #f5a623;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Larger planet image in popup */
+        .popup-content img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        /* Additional planet information */
+        .popup-content h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .popup-content p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#"><img src="logo.jpg" alt="Spaceology Logo" class="logo"></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#explore">Explore</a></li>
+            <li><a href="#planets">Planets</a></li>
+            <li><a href="#solarsystem">Solar System</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+    <hr>
+    <br>
+    
+    
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <h1>SPACEOLOGY</h1>
+        <p>Explore the mysteries of the cosmos, dive into the secrets of the universe, and journey through the stars with us.</p>
+    </section>
+
+    <!-- Explore Section -->
+    <section class="explore-section" id="explore">
+        <h2>Explore the Cosmos</h2>
+        <p>Join us on an exciting journey through the universe, where we uncover the secrets of the stars, planets, and galaxies beyond. The cosmos is vast and filled with wonders, from distant planets orbiting alien suns to the nebulae that birth new stars. With each step, we dive deeper into the mysteries of space, exploring the science and beauty of the universe around us.</p>
+        <p>Whether you're fascinated by the icy giants of the outer solar system, the fiery surface of the Sun, or the unknown worlds yet to be discovered, there's always something new to learn and explore. With our interactive experiences, educational resources, and captivating imagery, you'll gain a newfound appreciation for the wonders of space.</p>
+        <p>From the earliest moments of the Big Bang to the farthest reaches of deep space, the cosmos offers a never-ending story of exploration. Let's embark on this adventure together—because the universe is waiting for you!</p>
+    </section>
+    
+    <!-- Planets Section with onclick events to open popup -->
+    <section class="planets-section" id="planets">
+        <h2>Planets</h2>
+        <div class="planet-grid">
+            <div class="planet" onclick="openPopup('Mercury: The Swift Planet', 'mercury.jpg', `
+            Mercury is the smallest planet in our Solar System and the closest one to the Sun. 
+            It’s a rocky, barren world with extreme temperatures and almost no atmosphere, making it vastly different from Earth. 
+            Named after the Roman messenger god known for his speed, Mercury orbits the Sun faster than any other planet, completing a full revolution in just 88 Earth days.
+        
+            
+        `)">
+                <img src="mercury.jpg" alt="Mercury">
+                <h3>Mercury</h3>
+                <p>The Smallest Planet, closest to the Sun.</p>
+            </div>
+            <div class="planet" onclick="openPopup('Venus: The Earths Twin', 'venus.jpg', 'Venus is often called Earths sister planet because of its similar size, mass, and proximity to the Sun. However, despite these similarities, Venus is a world completely different from Earth. It is a hot, toxic, and inhospitable planet with an atmosphere thick enough to crush anything that attempts to land. Venus extreme conditions make it one of the most fascinating planets to study.')">
+                <img src="venus.jpg" alt="Venus">
+                <h3>Venus</h3>
+                <p>Known as Earth's twin, with a Thick Atmosphere.</p>
+            </div>
+            <div class="planet" onclick="openPopup('Earth: The Blue Planet', 'earth.jpg', 'Earth is the third planet from the Sun and the only known planet to support life. With its diverse ecosystems, vast oceans, and a dynamic atmosphere, Earth provides the perfect conditions for a wide variety of life forms. Often referred to as the Blue Planet because of its abundance of water, Earth stands out in the Solar System due to its unique combination of factors that allow life to thrive.')">
+                <img src="earth.jpg" alt="Earth">
+                <h3>Earth</h3>
+                <p>The Only Planet known to Support Life.</p>
+            </div>
+            <div class="planet" onclick="openPopup('Mars: The Red Planet', 'mars.jpg', 'Mars, often referred to as the Red Planet due to its reddish appearance, is the fourth planet from the Sun. It is one of the most studied planets in the Solar System because of its potential to host life, both in the past and perhaps in the future. Mars is a cold, dry world with vast deserts, towering volcanoes, and deep canyons. Despite its hostile environment, it remains one of the most promising places for future exploration.')">
+                <img src="mars.jpg" alt="Mars">
+                <h3>Mars</h3>
+                <p>The Red Planet, with the Largest Volcano.</p>
+            </div>
+            <div class="planet" onclick="openPopup('Jupiter: The Giant of the Solar System', 'jupiter.jpg', 'Jupiter is the largest planet in the Solar System, and it’s often referred to as a gas giant because of its massive size and thick, gaseous atmosphere. Known for its Great Red Spot and powerful magnetic field, Jupiter is an intriguing world that continues to captivate scientists and astronomers. With its many moons, intense storms, and unique features, Jupiter is a planetary giant in every sense.')">
+                <img src="jupiter.jpg" alt="Jupiter">
+                <h3>Jupiter</h3>
+                <p>The Largest Planet, known for its Great Red Spot and Mighty Storms.</p>
+            </div>
+            <div class="planet" onclick="openPopup('Saturn: The Ringed Wonder', 'saturn.jpg', 'Saturn, the sixth planet from the Sun, is one of the most iconic planets in the Solar System due to its stunning system of rings. Known as a gas giant, Saturn is composed mainly of hydrogen and helium, with a small rocky core. Despite its enormous size, Saturn has a very low density—if there were a large enough body of water, Saturn would float. Saturn has fascinated astronomers for centuries with its mesmerizing appearance, powerful storms, and extensive moon system.')">
+                <img src="saturn.jpg" alt="Saturn">
+                <h3>Saturn</h3>
+                <p>Famous for its Beautiful Ring System.</p>
+            </div>
+            <div class="planet" onclick="openPopup('Uranus: The Ice Giant', 'uranus.jpg', 'Uranus is the seventh planet from the Sun and is often referred to as an ice giant due to its composition, which is rich in icy materials like water, ammonia, and methane. Unlike most planets, Uranus has a unique tilt that causes it to rotate on its side. It is also known for its striking blue-green color, which results from the methane in its atmosphere. Uranus is a distant and mysterious planet, with relatively little direct exploration, but it continues to intrigue scientists due to its unusual features and distant position in the Solar System.')">
+                <img src="uranus.jpg" alt="Uranus">
+                <h3>Uranus</h3>
+                <p>A Tilted Planet with a Unique Rotation.</p>
+            </div>
+            <div class="planet" onclick="openPopup('Neptune: The Mysterious Blue Planet', 'neptune.jpg', 'Neptune, the eighth and farthest planet from the Sun, is a striking blue world known for its strong winds, vast storms, and icy composition. Often called an ice giant along with Uranus, Neptune is made primarily of hydrogen, helium, and water-rich compounds, such as methane and ammonia. Although it’s a distant and mysterious planet, Neptune’s deep blue color, powerful winds, and unique weather patterns make it a fascinating object of study.')">
+                <img src="neptune.jpg" alt="Neptune">
+                <h3>Neptune</h3>
+                <p>The Farthest Planet, known for its Intense Storms.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Solar System Section -->
+<section class="solar-system-section" id="solarsystem">
+    <h2>Solar System</h2>
+    <p>Experience the vast beauty and mystery of our solar system.</p>
+    </section>
+
+    <!-- Video background -->
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="Solar System.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Solar System animation
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="planet planet-mercury orbit-mercury"></div>
+        <div class="planet planet-venus orbit-venus"></div>
+        <div class="planet planet-earth orbit-earth"></div>
+        <div class="planet planet-mars orbit-mars"></div>
+        <div class="planet planet-jupiter orbit-jupiter"></div>
+        <div class="planet planet-saturn orbit-saturn"></div>
+        <div class="planet planet-uranus orbit-uranus"></div>
+        <div class="planet planet-neptune orbit-neptune"></div>
+    </div>
+</section> -->
+
+
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Have any questions or want to reach out? Fill out the form below, and we’ll get back to you!</p>
+    <form action="your-server-endpoint" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your Name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Your Email">
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Your Message"></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- Popup Container -->
+<div class="popup-container" id="popup-container">
+    <div class="popup-content" id="popup-content">
+        <button class="close-btn" onclick="closePopup()">Close</button>
+        <img id="popup-image" src="" alt="Planet Image">
+        <h3 id="popup-title"></h3>
+        <p id="popup-description"></p>
+    </div>
+</div>
+<script>
+function openPopup(title, imageSrc, description) {
+        document.getElementById('popup-title').textContent = title;
+        document.getElementById('popup-image').src = imageSrc;
+        document.getElementById('popup-description').textContent = description;
+        document.getElementById('popup-container').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('popup-container').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        const popupContainer = document.getElementById('popup-container');
+        if (event.target === popupContainer) {
+            closePopup();
+        }
+    }
+</script>
+
+
+</body>
+</html>
